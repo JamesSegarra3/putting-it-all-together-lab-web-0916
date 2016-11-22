@@ -1,3 +1,4 @@
+import React from 'react';
 export default (state={}, action) => {
   switch (action.type) {
     case 'FETCH_DECK':
@@ -60,6 +61,15 @@ export default (state={}, action) => {
         ]
       }
 
+    case 'SET_AI_CARDS':
+      return Object.assign({},state,action.payload)
+    case 'SET_USER_CARDS':
+      return Object.assign({},state,action.payload)
+    case 'HIT_AI':
+      return Object.assign({},state,
+        {deck:action.payload.deck,aiCards:[...state.aiCards,action.payload.aiCards]})
+    case 'HIT_USER':
+      return Object.assign({},state, {deck:action.payload.deck,userCards:[...state.userCards,action.payload.userCards]})
     default:
       return state
   }
